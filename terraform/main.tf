@@ -25,7 +25,7 @@ resource "aws_security_group" "security_group" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["${var.allowed_ip_address}/0"]
+    cidr_blocks = ["${var.allowed_ip_address}/32"]
   }
 
   ingress {
@@ -74,42 +74,17 @@ resource "aws_db_instance" "postgresql" {
   engine            = "postgres"
   engine_version    = "11.4"
   instance_class    = "db.t2.micro"
-  name              = "example-postgresql"
+  name              = var.db_database
   username          = var.db_username
   password          = var.db_password
 
   # VPCへの関連
-  vpc_security_group_ids = [aws_security_group.example_security_group.id]
-  // subnet_group_name      = aws_db_subnet_group.example_db_subnet_group.name
+  vpc_security_group_ids = [aws_security_group.security_group.id]
 
-  # PostgreSQLインバウンド設定
-  ingress {
-    from_port       = 5432
-    to_port         = 5432
-    protocol        = "tcp"
-    security_groups = [aws_security_group.security_group.id]
-  }
-
-  # PostgreSQLアウトバウンド設定
-  egress {
-    from_port       = 0
-    to_port         = 0
-    protocol        = "-1"
-    security_groups = [aws_security_group.security_group.id]
-  }
-
-  #PostgreSQLインバウンド設定（allowed_ip_addressとVPC内からのアクセスを許可）
-  ingress {
-    from_port       = 5432
-    to_port         = 5432
-    protocol        = "tcp"
-    cidr_blocks     = [aws_vpc.vpc.cidr_block]
-    security_groups = [aws_security_group.security_group.id]
-  }
 }
 
 # VPCエンドポイントを作成
-resource "aws_vpc_endpoint" "example_vpc_endpoint" {
+resource "aws_vpc_endpoint" "vpc_endpoint" {
   vpc_id             = aws_vpc.vpc.id
   service_name       = "com.amazonaws.us-east-1.rds"
   security_group_ids = [aws_security_group.security_group.id]

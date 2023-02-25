@@ -38,3 +38,9 @@ variable "db_password" {
   type        = string
   default     = "admin"
 }
+
+variable "db_database" {
+  description = "DB name"
+  type        = string
+  default     = "my_db"
+}
