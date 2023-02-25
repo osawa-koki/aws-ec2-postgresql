@@ -98,6 +98,9 @@ resource "aws_security_group" "security_group" {
 # インターネットゲートウェイを作成する
 resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.vpc.id
+  tags = {
+    Name = "${var.project_name}-igw"
+  }
 }
 
 # パブリックサブネットのルートテーブルを作成する
