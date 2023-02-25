@@ -9,7 +9,7 @@ resource "aws_db_instance" "postgresql" {
   username            = var.db_username
   password            = var.db_password
   publicly_accessible = true
-  skip_final_snapshot = false
+  skip_final_snapshot = true
 
   # VPCへの関連
   vpc_security_group_ids = [aws_security_group.security_group_postgresql.id]
