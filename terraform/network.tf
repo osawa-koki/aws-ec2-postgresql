@@ -50,6 +50,6 @@ resource "aws_security_group" "security_group" {
 # VPCエンドポイントを作成
 resource "aws_vpc_endpoint" "vpc_endpoint" {
   vpc_id             = aws_vpc.vpc.id
-  service_name       = "com.amazonaws.us-east-1.rds"
+  service_name       = "com.amazonaws.${var.region}.rds"
   security_group_ids = [aws_security_group.security_group.id]
 }
