@@ -113,7 +113,7 @@ resource "aws_route_table" "public_route_table" {
 
 # パブリックサブネットにルートテーブルを関連付ける
 resource "aws_route_table_association" "public_association" {
-  subnet_id      = aws_subnet.subnet.id
+  subnet_id      = aws_subnet.subnet_public.id
   route_table_id = aws_route_table.public_route_table.id
 }
 
