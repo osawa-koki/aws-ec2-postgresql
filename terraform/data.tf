@@ -10,5 +10,5 @@ resource "aws_db_instance" "postgresql" {
   password          = var.db_password
 
   # VPCへの関連
-  vpc_security_group_ids = [aws_security_group.security_group.id]
+  db_subnet_group_name = aws_db_subnet_group.subnet_group.name
 }

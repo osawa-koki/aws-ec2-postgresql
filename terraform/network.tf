@@ -4,6 +4,11 @@ resource "aws_vpc" "vpc" {
   cidr_block = "10.0.0.0/16"
 }
 
+resource "aws_db_subnet_group" "subnet_group" {
+  name       = "main"
+  subnet_ids = [aws_subnet.subnet.id]
+}
+
 # サブネットを作成
 resource "aws_subnet" "subnet" {
   vpc_id     = aws_vpc.vpc.id
