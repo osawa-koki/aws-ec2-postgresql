@@ -4,7 +4,7 @@ provider "aws" {
 }
 
 resource "aws_resourcegroups_group" "resource_group" {
-  name = "${var.project_name}-resource-group"
+  name = "my-${var.project_name}-resource-group"
   tags = {
     Name        = "${var.project_name}-resource-group"
     Terraform   = "true"

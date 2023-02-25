@@ -19,5 +19,6 @@ resource "aws_instance" "vm" {
 
   tags = {
     Name = "${var.project_name}-ec2"
+    ResourceGroup = aws_resourcegroups_group.resource_group.name
   }
 }
