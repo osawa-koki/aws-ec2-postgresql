@@ -107,7 +107,7 @@ resource "aws_internet_gateway" "igw" {
 resource "aws_route_table" "public_route_table" {
   vpc_id = aws_vpc.vpc.id
   tags = {
-    Name = "${var.project_name}-route-table"
+    Name = "${var.project_name}-public-route-table"
   }
 }
 
