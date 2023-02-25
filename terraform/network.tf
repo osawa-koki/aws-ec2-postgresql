@@ -9,14 +9,14 @@ resource "aws_vpc" "vpc" {
 
 resource "aws_db_subnet_group" "subnet_group" {
   name       = "${var.project_name}-subnet-group"
-  subnet_ids = [aws_subnet.subnet_a.id, aws_subnet.subnet_b.id]
+  subnet_ids = [aws_subnet.subnet_public.id, aws_subnet.subnet_a.id, aws_subnet.subnet_b.id]
   tags = {
     Name = "${var.project_name}-db-subnet-group"
   }
 }
 
 # サブネットを作成
-resource "aws_subnet" "subnet" {
+resource "aws_subnet" "subnet_public" {
   vpc_id     = aws_vpc.vpc.id
   cidr_block = "10.0.0.0/24"
   map_public_ip_on_launch = true
