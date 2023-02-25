@@ -8,13 +8,12 @@ resource "aws_key_pair" "ssh_key" {
 resource "aws_instance" "vm" {
   ami             = "ami-be4a24d9"
   instance_type   = "t2.micro"
-  security_groups = [aws_security_group.security_group.id]
+  security_groups = [aws_security_group.security_group_ec2.id]
   key_name        = aws_key_pair.ssh_key.key_name
 
   associate_public_ip_address = true
 
   # VPCへの関連
-  vpc_security_group_ids = [aws_security_group.security_group.id]
   subnet_id              = aws_subnet.subnet_public.id
 
   tags = {

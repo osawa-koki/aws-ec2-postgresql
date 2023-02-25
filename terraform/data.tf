@@ -12,6 +12,7 @@ resource "aws_db_instance" "postgresql" {
   skip_final_snapshot = false
 
   # VPCへの関連
+  vpc_security_group_ids = [aws_security_group.security_group_postgresql.id]
   db_subnet_group_name = aws_db_subnet_group.subnet_group.name
 
   tags = {
