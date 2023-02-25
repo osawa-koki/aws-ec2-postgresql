@@ -5,7 +5,7 @@ resource "aws_db_instance" "postgresql" {
   engine            = "postgres"
   engine_version    = "11.12"
   instance_class    = "db.t2.micro"
-  db_name           = var.db_database
+  db_name           = var.db_name
   username          = var.db_username
   password          = var.db_password
 
