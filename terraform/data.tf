@@ -8,7 +8,7 @@ resource "aws_db_instance" "postgresql" {
   db_name             = var.db_name
   username            = var.db_username
   password            = var.db_password
-  publicly_accessible = true
+  publicly_accessible = true // DBマイグレーション用
   skip_final_snapshot = true
 
   # VPCへの関連

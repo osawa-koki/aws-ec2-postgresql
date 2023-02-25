@@ -64,8 +64,7 @@ resource "aws_security_group" "security_group_postgresql" {
     cidr_blocks = [aws_subnet.subnet_public.cidr_block]
   }
 
-  # EC2アウトバウンド設定
-  egress {
+  egress { // DBマイグレーション用
     description = "Allow all outbound traffic"
     from_port   = 0
     to_port     = 0
