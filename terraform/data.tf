@@ -11,4 +11,8 @@ resource "aws_db_instance" "postgresql" {
 
   # VPCへの関連
   db_subnet_group_name = aws_db_subnet_group.subnet_group.name
+
+  tags = {
+    Name = "${var.project_name}-postgresql"
+  }
 }

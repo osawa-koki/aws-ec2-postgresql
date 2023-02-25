@@ -99,6 +99,9 @@ resource "aws_internet_gateway" "igw" {
 # パブリックサブネットのルートテーブルを作成する
 resource "aws_route_table" "public_route_table" {
   vpc_id = aws_vpc.vpc.id
+  tags = {
+    Name = "${var.project_name}-route-table"
+  }
 }
 
 # パブリックサブネットにルートテーブルを関連付ける
