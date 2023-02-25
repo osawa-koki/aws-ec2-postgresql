@@ -10,6 +10,9 @@ resource "aws_vpc" "vpc" {
 resource "aws_db_subnet_group" "subnet_group" {
   name       = "${var.project_name}-subnet-group"
   subnet_ids = [aws_subnet.subnet_a.id, aws_subnet.subnet_b.id]
+  tags = {
+    Name = "${var.project_name}-db-subnet-group"
+  }
 }
 
 # サブネットを作成
