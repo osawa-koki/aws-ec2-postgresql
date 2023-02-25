@@ -39,7 +39,7 @@ variable "db_password" {
   default     = "admin"
 }
 
-variable "db_database" {
+variable "db_name" {
   description = "DB name"
   type        = string
   default     = "my_db"
