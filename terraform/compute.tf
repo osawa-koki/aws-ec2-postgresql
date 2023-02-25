@@ -11,6 +11,8 @@ resource "aws_instance" "vm" {
   security_groups = [aws_security_group.security_group.id]
   key_name        = aws_key_pair.ssh_key.key_name
 
+  associate_public_ip_address = true
+
   # VPCへの関連
   vpc_security_group_ids = [aws_security_group.security_group.id]
   subnet_id              = aws_subnet.subnet.id
