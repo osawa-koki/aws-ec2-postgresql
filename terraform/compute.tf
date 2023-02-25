@@ -14,4 +14,8 @@ resource "aws_instance" "vm" {
   # VPCへの関連
   vpc_security_group_ids = [aws_security_group.security_group.id]
   subnet_id              = aws_subnet.subnet.id
+
+  tags = {
+    Name = "${var.project_name}-ec2"
+  }
 }
