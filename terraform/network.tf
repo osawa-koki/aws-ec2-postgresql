@@ -19,6 +19,7 @@ resource "aws_db_subnet_group" "subnet_group" {
 resource "aws_subnet" "subnet" {
   vpc_id     = aws_vpc.vpc.id
   cidr_block = "10.0.0.0/24"
+  map_public_ip_on_launch = true
   tags = {
     Name = "${var.project_name}-main-subnet"
   }
@@ -68,6 +69,13 @@ resource "aws_security_group" "security_group" {
     to_port     = 443
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 5432
+    to_port     = 5432
+    protocol    = "tcp"
+    cidr_blocks = ["${var.allowed_ip_address}/32"]
   }
 
   # EC2アウトバウンド設定
