@@ -5,14 +5,22 @@ resource "aws_vpc" "vpc" {
 }
 
 resource "aws_db_subnet_group" "subnet_group" {
-  name       = "main"
-  subnet_ids = [aws_subnet.subnet.id]
+  name       = "${var.project_name}-subnet-group"
+  subnet_ids = [aws_subnet.subnet_a.id, aws_subnet.subnet_b.id]
 }
 
 # サブネットを作成
 resource "aws_subnet" "subnet" {
   vpc_id     = aws_vpc.vpc.id
+  cidr_block = "10.0.0.0/24"
+}
+resource "aws_subnet" "subnet_a" {
+  vpc_id     = aws_vpc.vpc.id
   cidr_block = "10.0.1.0/24"
+}
+resource "aws_subnet" "subnet_b" {
+  vpc_id     = aws_vpc.vpc.id
+  cidr_block = "10.0.2.0/24"
 }
 
 # VPCに関する設定
