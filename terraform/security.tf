@@ -56,6 +56,14 @@ resource "aws_security_group" "security_group_postgresql" {
     cidr_blocks = ["${var.allowed_ip_address}/32"]
   }
 
+  ingress {
+    description = "Allow PostgreSQL (VPC)"
+    from_port   = 5432
+    to_port     = 5432
+    protocol    = "tcp"
+    cidr_blocks = [aws_subnet.subnet_public.cidr_block]
+  }
+
   # EC2アウトバウンド設定
   egress {
     description = "Allow all outbound traffic"
