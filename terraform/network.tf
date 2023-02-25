@@ -51,10 +51,3 @@ resource "aws_security_group" "security_group" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
-
-# VPCエンドポイントを作成
-resource "aws_vpc_endpoint" "vpc_endpoint" {
-  vpc_id             = aws_vpc.vpc.id
-  service_name       = "com.amazonaws.${var.region}.rds"
-  security_group_ids = [aws_security_group.security_group.id]
-}
