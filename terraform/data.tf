@@ -10,6 +10,7 @@ resource "aws_db_instance" "postgresql" {
   password            = var.db_password
   timezone            = "Tokyo Standard Time"
   publicly_accessible = true
+  skip_final_snapshot = false
 
   # VPCへの関連
   db_subnet_group_name = aws_db_subnet_group.subnet_group.name
